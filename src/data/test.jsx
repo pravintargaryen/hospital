@@ -9,7 +9,7 @@ const testFetch = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:4000");
+        const response = await fetch("http://localhost:4000/consume-messages");
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
