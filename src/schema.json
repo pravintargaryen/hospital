@@ -1,0 +1,183 @@
+{
+  "type": "object",
+  "properties": {
+    "emergency": {
+      "type": "object",
+      "properties": {
+        "bedAvailability": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "room": { "type": "string" },
+              "bed": { "type": "string" },
+              "status": {
+                "type": "string",
+                "enum": ["available", "occupied", "cleaning", "maintenance"]
+              },
+              "type": {
+                "type": "string",
+                "enum": ["ICU", "general", "emergency"]
+              }
+            },
+            "required": ["room", "bed", "status", "type"]
+          }
+        },
+        "patientQueue": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "priority": {
+                "type": "string",
+                "enum": ["low", "medium", "high", "critical"]
+              },
+              "arrivalTime": { "type": "string", "format": "date-time" },
+              "status": {
+                "type": "string",
+                "enum": ["waiting", "in treatment", "discharged"]
+              }
+            },
+            "required": ["name", "priority", "arrivalTime", "status"]
+          }
+        },
+        "staffSchedule": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "shiftStart": { "type": "string", "format": "date-time" },
+              "shiftEnd": { "type": "string", "format": "date-time" }
+            },
+            "required": ["name", "shiftStart", "shiftEnd"]
+          }
+        },
+        "ambulanceTracking": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "latitude": { "type": "number" },
+              "longitude": { "type": "number" }
+            },
+            "required": ["latitude", "longitude"]
+          }
+        }
+      },
+      "required": [
+        "bedAvailability",
+        "patientQueue",
+        "staffSchedule",
+        "ambulanceTracking"
+      ]
+    },
+    "bloodBank": {
+      "type": "object",
+      "properties": {
+        "bloodInventory": {
+          "type": "object",
+          "properties": {
+            "A+": { "type": "integer" },
+            "A-": { "type": "integer" },
+            "B+": { "type": "integer" },
+            "B-": { "type": "integer" },
+            "AB+": { "type": "integer" },
+            "AB-": { "type": "integer" },
+            "O+": { "type": "integer" },
+            "O-": { "type": "integer" }
+          },
+          "required": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+        },
+        "donors": {
+          "type": "object",
+          "properties": {
+            "A+": { "type": "integer" },
+            "A-": { "type": "integer" },
+            "B+": { "type": "integer" },
+            "B-": { "type": "integer" },
+            "AB+": { "type": "integer" },
+            "AB-": { "type": "integer" },
+            "O+": { "type": "integer" },
+            "O-": { "type": "integer" }
+          },
+          "required": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+        },
+        "requests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": { "type": "string", "format": "date" },
+              "bloodType": {
+                "type": "string",
+                "enum": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+              },
+              "quantity": { "type": "integer" }
+            },
+            "required": ["date", "bloodType", "quantity"]
+          }
+        },
+        "donorTrends": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": { "type": "string", "format": "date" },
+              "bloodType": {
+                "type": "string",
+                "enum": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+              },
+              "donations": { "type": "integer" }
+            },
+            "required": ["date", "bloodType", "donations"]
+          }
+        }
+      },
+      "required": ["bloodInventory", "donors", "requests", "donorTrends"]
+    },
+    "pharmacy": {
+      "type": "object",
+      "properties": {
+        "pharmacyStockDetails": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "product": { "type": "string" },
+              "stockLevel": { "type": "integer" },
+              "price": { "type": "number" }
+            },
+            "required": ["product", "stockLevel", "price"]
+          }
+        },
+        "orderDetails": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "orderID": { "type": "string" },
+              "date": { "type": "string", "format": "date-time" },
+              "product": { "type": "string" },
+              "quantity": { "type": "integer" },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pending",
+                  "processed",
+                  "shipped",
+                  "delivered",
+                  "cancelled"
+                ]
+              }
+            },
+            "required": ["orderID", "date", "product", "quantity", "status"]
+          }
+        }
+      },
+      "required": ["pharmacyStockDetails", "orderDetails"]
+    }
+  },
+  "required": ["emergency", "bloodBank", "pharmacy"]
+}
