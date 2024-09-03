@@ -96,7 +96,6 @@ const DonorsBarChart = () => {
 
   return (
     <div>
-      <h2>Donors by Blood Type</h2>
       <svg ref={svgRef}></svg>
       <div
         id="tooltip"
