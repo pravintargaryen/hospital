@@ -47,7 +47,7 @@ const testFetch = () => {
         <tbody>
           {data.map((item, index) => (
             <tr key={index}>
-              <td>{item.message}</td>
+              <td>{item}</td>
             </tr>
           ))}
         </tbody>
