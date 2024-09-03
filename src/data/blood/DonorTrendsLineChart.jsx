@@ -116,7 +116,6 @@ const DonorTrendsLineChart = () => {
 
   return (
     <div>
-      <h2>Donor Trends Over Time</h2>
       <svg ref={svgRef}></svg>
       <div
         id="tooltip"
