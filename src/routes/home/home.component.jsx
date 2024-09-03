@@ -10,6 +10,19 @@ import Col from "react-bootstrap/Col";
 const Home = () => {
   return (
     <Fragment>
+       <div
+        className="container rounded shadow-sm p-3 mb-5 bg-secondary text-center"
+        style={{ color: "pink" }}
+      >
+        <h1 style={{ color: "pink" }} className="text-center">
+          Test
+        </h1>
+        <Row>
+          <Col>
+            <RoomTable />
+          </Col>
+        </Row>
+      </div>
       <div
         className="container rounded shadow-sm p-3 mb-5 bg-secondary text-center"
         style={{ color: "pink" }}
