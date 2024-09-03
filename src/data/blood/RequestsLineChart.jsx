@@ -110,7 +110,6 @@ const RequestsLineChart = () => {
 
   return (
     <div>
-      <h2>Blood Requests Over Time</h2>
       <svg ref={svgRef}></svg>
       <div
         id="tooltip"
